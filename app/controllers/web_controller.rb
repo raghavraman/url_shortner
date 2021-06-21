@@ -5,7 +5,7 @@ class WebController < ApplicationController
 
   def shortern
     @url = Url.create(orginalURL: params[:redirect_url])
-    render json: { shortern_url: "http://localhost:3000/#{@url.key}"}, status: :ok and return if @url.save
+    render json: result_json, status: :ok and return if @url.save
     render :json => { :errors => @url.errors.full_messages }, status: :unprocessable_entity
   end
 
@@ -27,5 +27,9 @@ class WebController < ApplicationController
 
   def check_params
     render json: missing_params, status: :unprocessable_entity and return unless params[:redirect_url]
+  end
+
+  def result_json
+    { key: @url.key, shortern_url: "#{request.protocol}#{request.host_with_port}/#{@url.key}"}
   end
 end
