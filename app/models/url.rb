@@ -8,7 +8,7 @@ class Url < ApplicationRecord
   def set_key
     key = ""
     loop do
-      key = SecureRandom.base64(2)
+      key = SecureRandom.base64(3)
       break unless Url.find_by(key: key)
     end
     self.key = key

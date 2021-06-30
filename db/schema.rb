@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2021_06_19_213121) do
     t.string "key", limit: 4, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "expiration"
+    t.boolean "is_deleted"
     t.index ["key"], name: "index_urls_on_key", unique: true
   end
 
